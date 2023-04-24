@@ -4,17 +4,30 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
+
+const authRoute = require('./routes/auth')
+
 dotenv.config({ path: "config/config.env" })
 dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(cors())
 const port = process.env.PORT || 5000
-const server = http.createServer(app)
-// server.get('/', (req, res) => {
-//     res.send('Hello World!')
-// })
 
-server.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.use('/api/v1', authRoute)
+
+
+
+const server = http.createServer(app)
+
+//connect db
+mongoose
+    .connect(process.env.DB_URI)
+    .then(() => {
+        server.listen(port, () => {
+            console.log(`DB connected ...App listening on port ${port}`)
+        })
+    })
+    .catch((err) => {
+        console.log("Database connected failed. Server is shutting down!")
+    })
