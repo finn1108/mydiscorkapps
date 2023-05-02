@@ -5,23 +5,32 @@ import { LoginHeader } from './LoginHeader'
 import { LoginInput } from './LoginInput';
 import { LoginFooter } from './LoginFooter';
 import { validatorLogin } from '../../components/utils/Validator';
-export const Login = () => {
-    const [mail, setMail] = useState("");
+import { connect } from "react-redux"
+import { getActions } from '../../redux/actions/authActions';
+
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+const Login = ({ loginAction }) => {
+    const history = useHistory()
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isFormValid, setIsFormValid] = useState(false)
     const handleLogin = () => {
-        console.log(mail)
-        console.log(password)
+        const userDetails = {
+            email,
+            password
+        };
+        loginAction(userDetails, history)
     }
     useEffect(() => {
-        setIsFormValid(validatorLogin(mail, password))
-    }, [mail, password, isFormValid])
+        setIsFormValid(validatorLogin(email, password))
+    }, [email, password, isFormValid])
     return (
         <BoxAuth >
             <LoginHeader />
             <LoginInput
-                mail={mail}
-                setMail={setMail}
+                email={email}
+                setEmail={setEmail}
                 password={password}
                 setPassword={setPassword}
             />
@@ -29,3 +38,10 @@ export const Login = () => {
         </BoxAuth>
     )
 }
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch)
+    }
+}
+
+export default connect(null, mapActionsToProps)(Login);

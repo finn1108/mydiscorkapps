@@ -1,10 +1,11 @@
 import { Tooltip } from '@mui/material'
 import React from 'react'
 import { CustomButton } from '../../components/shared/CustomButton'
-import { useNavigate } from "react-router-dom"
+
 import { RedirectInfo } from '../../components/shared/RedirectInfo'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 export const LoginFooter = ({ handleLogin, isFormValid }) => {
-    const history = useNavigate();
+    const history = useHistory()
     const handlePushToRegisterPage = () => {
         history("/register")
     }

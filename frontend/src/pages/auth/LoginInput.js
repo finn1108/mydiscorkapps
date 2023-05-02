@@ -1,14 +1,14 @@
 import React from 'react'
 import { InputWithLabel } from '../../components/shared/InputWithLabel'
-import { LoginFooter } from './LoginFooter'
 
-export const LoginInput = ({ mail, setMail, password, setPassword }) => {
+
+export const LoginInput = ({ email, setEmail, password, setPassword }) => {
 
     return (
         <>
             <InputWithLabel
-                value={mail}
-                setValue={setMail}
+                value={email}
+                setValue={setEmail}
                 type="text"
                 label="Email"
                 placeholder="Enter your email"

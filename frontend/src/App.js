@@ -1,22 +1,37 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import './App.css';
 
 
-import { RegisterPage } from './pages/RegisterPage';
+import RegisterPage from './pages/auth/RegisterPage';
 import { Dashboard } from './pages/Dashboard';
-import { Login } from './pages/auth/Login';
+import Login from './pages/auth/Login';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/register' element={<RegisterPage />} />
-        <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route path="/" element={<Navigate replace to="/dashboard" />} />
-      </Routes>
+      <Switch>
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <Route exact path='/register'>
+          <RegisterPage />
+        </Route>
+        <Route exact path='/dashboard'>
+          <Dashboard />
+        </Route>
+        <Route >
+          <Redirect to="/dashboard" />
+        </Route>
+
+      </Switch>
     </BrowserRouter>
   );
 }
