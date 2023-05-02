@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 
 import './App.css';
 
-import { Login } from './pages/Login';
+
 import { RegisterPage } from './pages/RegisterPage';
 import { Dashboard } from './pages/Dashboard';
+import { Login } from './pages/auth/Login';
 
 function App() {
   return (

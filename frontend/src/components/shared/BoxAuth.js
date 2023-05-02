@@ -8,7 +8,7 @@ const BoxWrapper = styled('div')({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundImage: `url(${'https://res.cloudinary.com/dctb1eocj/image/upload/v1682364509/wallpaer_cyt6jq.png'})`,
+    backgroundImage: `url(${'https://res.cloudinary.com/dctb1eocj/image/upload/v1682405451/wallpaer_1_xiuui4.png'})`,
     backgroundPosition: 'center top',
     backgroundSize: '100% auto',
     backgroundRepeat: 'no-repeat',
