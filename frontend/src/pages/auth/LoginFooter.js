@@ -3,11 +3,11 @@ import React from 'react'
 import { CustomButton } from '../../components/shared/CustomButton'
 
 import { RedirectInfo } from '../../components/shared/RedirectInfo'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
+import { useHistory } from 'react-router-dom'
 export const LoginFooter = ({ handleLogin, isFormValid }) => {
     const history = useHistory()
     const handlePushToRegisterPage = () => {
-        history("/register")
+        history.push("/register")
     }
     return (
         <>
