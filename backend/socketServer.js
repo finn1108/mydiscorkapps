@@ -1,7 +1,7 @@
 const { verifyTokenSocket } = require("./middleware/authSocket");
 const { disconnectHandler } = require("./socketHandler.js/disconnectHandler");
 const newConnectionHandler = require("./socketHandler.js/newConnectionHandler");
-
+const serverStore = require("./serverStore")
 const registerSocketServer = (server) => {
     const io = require("socket.io")(server, {
         cors: {
@@ -10,7 +10,7 @@ const registerSocketServer = (server) => {
         },
     });
 
-    //serverStore.setSocketServerInstance(io);
+    serverStore.setSocketServerInstance(io);
 
     io.use((socket, next) => {
         verifyTokenSocket(socket, next);

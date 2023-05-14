@@ -5,7 +5,7 @@ import { AddFriendsButton } from './friendsSideBar/AddFriendsButton';
 import { FriendTitle } from './friendsSideBar/FriendTitle';
 import { FriendList } from './friendsSideBar/FriendList';
 
-import { PendingInvitationList } from './friendsSideBar/PendingInvitationList';
+import PendingInvitationList from './friendsSideBar/PendingInvitationList';
 const MainContainer = styled("div")({
     width: "224px",
     height: "100%",

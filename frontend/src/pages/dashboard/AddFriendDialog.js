@@ -8,12 +8,19 @@ import Typography from "@mui/material/Typography";
 import { CustomPrimaryButton } from '../../components/shared/CustomPrimaryButton';
 import { InputWithLabel } from "../../components/shared/InputWithLabel"
 import { validateEmail } from '../../components/utils/Validator';
-export const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
+import { getActions } from '../../redux/actions/friendsActions';
+import { connect } from "react-redux";
+import { sendFriendInvitationAction } from '../../redux/apiClient'; const AddFriendDialog = ({ isDialogOpen, closeDialogHandler, sendFriendInvitation = () => { }, }) => {
     const [mail, setMail] = useState("");
     const [isFormValid, setIsFormValid] = useState("");
 
     const handleSendInvitation = () => {
-        // send friend request to server
+        sendFriendInvitation(
+            {
+                targetMailAddress: mail,
+            },
+            handleCloseDialog
+        );
     };
 
     const handleCloseDialog = () => {
@@ -24,7 +31,7 @@ export const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
     useEffect(() => {
         setIsFormValid(validateEmail(mail));
     }, [mail, setIsFormValid]);
-    console.log(isDialogOpen)
+    //console.log(isDialogOpen)
     return (
         <div>
             <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
@@ -62,3 +69,10 @@ export const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
         </div>
     )
 }
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch),
+    };
+};
+
+export default connect(null, mapActionsToProps)(AddFriendDialog);

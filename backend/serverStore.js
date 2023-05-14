@@ -32,7 +32,7 @@ const getActiveConnections = (userId) => {
             activeConnections.push(key);
         }
     });
-
+    console.log("35", activeConnections)
     return activeConnections;
 };
 
