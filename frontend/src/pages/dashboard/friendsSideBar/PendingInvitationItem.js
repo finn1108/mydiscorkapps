@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Tooltip, Typography, Box, Avatar } from "@mui/material";
-export const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitation, rejectFriendInvitation }) => {
+import { InvitationButton } from './InvitationButton';
+export const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitation = () => { }, rejectFriendInvitation = () => { } }) => {
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
     const handleAcceptInvitation = () => {
@@ -38,7 +39,11 @@ export const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitati
                     >
                         {username}
                     </Typography>
-
+                    <InvitationButton
+                        disabled={buttonsDisabled}
+                        acceptInvitationHandler={handleAcceptInvitation}
+                        rejectInvitationHandler={handleRejectInvitation}
+                    />
                 </Box>
             </div>
         </Tooltip>)

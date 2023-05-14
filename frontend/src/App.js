@@ -10,7 +10,7 @@ import './App.css';
 
 
 import RegisterPage from './pages/auth/RegisterPage';
-import { Dashboard } from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Login from './pages/auth/Login';
 import AlertNotification from './components/shared/AlertNotification';
 

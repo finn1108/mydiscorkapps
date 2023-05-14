@@ -11,6 +11,7 @@ export const getActions = (dispatch) => {
         loginAction: (userDetails, history) => dispatch(loginUser(userDetails, history)),
         registerAction: (userDetails, history) =>
             dispatch(registerUser(userDetails, history)),
+        setUserDetails: (userDetails) => dispatch(setUserDetails(userDetails)),
     };
 };
 
@@ -27,10 +28,11 @@ const loginUser = (userDetails, history) => {
         console.log(response);
         // console.log(response?.err.response.data);
         if (response.error) {
-            dispatch(openAlertMessage(response?.err.response.data));
+            dispatch(openAlertMessage(response?.err.message));
         } else {
-            const { userDetails } = response?.data;
-            localStorage.setItem("user", JSON.stringify(userDetails));
+            const { userLoginDetails } = response.data;
+            console.log(userLoginDetails)
+            localStorage.setItem("user", JSON.stringify(userLoginDetails));
 
             dispatch(setUserDetails(userDetails));
             history.push("/dashboard");
@@ -43,7 +45,7 @@ const registerUser = (userDetails, history) => {
         const response = await api.register(userDetails);
         console.log(response);
         if (response.error) {
-            dispatch(openAlertMessage(response?.err.response.data));
+            dispatch(openAlertMessage(response?.err.message));
         } else {
             const { userDetails } = response?.data;
             localStorage.setItem("user", JSON.stringify(userDetails));

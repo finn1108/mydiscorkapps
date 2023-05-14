@@ -29,7 +29,7 @@ const RegisterPage = ({ registerAction }) => {
     return (
         <BoxAuth>
             <Typography variant="h5" sx={{ color: "white " }}>
-                Creeate an account
+                Create an account
             </Typography>
             <RegisterInput
                 email={mail}
