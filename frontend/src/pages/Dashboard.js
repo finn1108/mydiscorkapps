@@ -7,6 +7,7 @@ import { AppBar } from './dashboard/AppBar';
 import { connect } from "react-redux";
 import { logout } from '../components/utils/auth';
 import { getActions } from '../redux/actions/authActions';
+import { connectWithSocketServer } from '../realTimeChat/socketConnection';
 
 
 const Wrapper = styled("div")({
@@ -23,6 +24,7 @@ const Dashboard = ({ setUserDetails }) => {
             logout();
         } else {
             setUserDetails(JSON.parse(userDetails));
+            connectWithSocketServer(JSON.parse(userDetails));
         }
     }, []);
     return (

@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 
+const socketServer = require("./socketServer");
+
 const authRoute = require('./routes/auth')
 
 dotenv.config({ path: "config/config.env" })
@@ -19,6 +21,7 @@ app.use('/api/v1', authRoute)
 
 
 const server = http.createServer(app)
+socketServer.registerSocketServer(server);
 
 //connect db
 mongoose
