@@ -1,4 +1,5 @@
 const { verifyTokenSocket } = require("./middleware/authSocket");
+const { disconnectHandler } = require("./socketHandler.js/disconnectHandler");
 const newConnectionHandler = require("./socketHandler.js/newConnectionHandler");
 
 const registerSocketServer = (server) => {
@@ -28,9 +29,9 @@ const registerSocketServer = (server) => {
         newConnectionHandler(socket, io);
         //emitOnlineUsers();
 
-        // socket.on("disconnect", () => {
-        //     disconnectHandler(socket);
-        // });
+        socket.on("disconnect", () => {
+            disconnectHandler(socket);
+        });
     });
 
     // setInterval(() => {
