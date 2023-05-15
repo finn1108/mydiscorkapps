@@ -4,7 +4,9 @@ import Typography from "@mui/material/Typography";
 import { Avatar } from '../../../../components/shared/Avatar';
 import { OnlineIndicator } from './OnlineIndicator';
 export const FriendListItem = ({ id, username, isOnline }) => {
+    //console.log(isOnline)
     return (
+
         <Button
             style={{
                 width: "100%",
@@ -32,5 +34,5 @@ export const FriendListItem = ({ id, username, isOnline }) => {
             </Typography>
             {isOnline && <OnlineIndicator />}
         </Button>
-    )
-}
+    );
+};

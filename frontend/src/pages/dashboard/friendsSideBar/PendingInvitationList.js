@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from "@mui/system";
-import { PendingInvitationItem } from './PendingInvitationItem';
+import PendingInvitationItem from './PendingInvitationItem';
 import { connect } from "react-redux";
 
 const MainContainer = styled("div")({

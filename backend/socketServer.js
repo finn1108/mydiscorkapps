@@ -16,10 +16,10 @@ const registerSocketServer = (server) => {
         verifyTokenSocket(socket, next);
     });
 
-    // const emitOnlineUsers = () => {
-    //     const onlineUsers = serverStore.getOnlineUsers();
-    //     io.emit("online-users", { onlineUsers });
-    // };
+    const emitOnlineUsers = () => {
+        const onlineUsers = serverStore.getOnlineUsers();
+        io.emit("online-users", { onlineUsers });
+    };
 
     io.on("connection", (socket) => {
         console.log("user connected socket.io");
@@ -27,16 +27,17 @@ const registerSocketServer = (server) => {
 
 
         newConnectionHandler(socket, io);
-        //emitOnlineUsers();
+        //emit online user
+        emitOnlineUsers();
 
         socket.on("disconnect", () => {
             disconnectHandler(socket);
         });
     });
 
-    // setInterval(() => {
-    //     emitOnlineUsers();
-    // }, [1000 * 8]);
+    setInterval(() => {
+        emitOnlineUsers();
+    }, [1000 * 8]);
 };
 
 module.exports = {

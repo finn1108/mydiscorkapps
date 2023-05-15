@@ -62,11 +62,11 @@ export const sendFriendInvitationAction = async (data) => {
 export const acceptFriendInvitationAction = async (data) => {
     try {
         return await apiClient.post("/friend-invitation/accept", data);
-    } catch (exception) {
-        checkResponseCode(exception);
+    } catch (err) {
+        checkResponseCode(err);
         return {
             error: true,
-            exception,
+            err,
         };
     }
 };
@@ -74,11 +74,11 @@ export const acceptFriendInvitationAction = async (data) => {
 export const rejectFriendInvitationAction = async (data) => {
     try {
         return await apiClient.post("/friend-invitation/reject", data);
-    } catch (exception) {
-        checkResponseCode(exception);
+    } catch (err) {
+        checkResponseCode(err);
         return {
             error: true,
-            exception,
+            err,
         };
     }
 };

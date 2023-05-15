@@ -3,7 +3,7 @@ import React from 'react'
 import { styled } from "@mui/system";
 import { AddFriendsButton } from './friendsSideBar/AddFriendsButton';
 import { FriendTitle } from './friendsSideBar/FriendTitle';
-import { FriendList } from './friendsSideBar/FriendList';
+import FriendList from './friendsSideBar/FriendList';
 
 import PendingInvitationList from './friendsSideBar/PendingInvitationList';
 const MainContainer = styled("div")({

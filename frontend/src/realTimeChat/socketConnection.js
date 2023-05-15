@@ -1,6 +1,6 @@
 import io from "socket.io-client";
-import friends from "../redux/store"
-import { setPendingFriendsInvitations } from "../redux/actions/friendsActions";
+import store from "../redux/store"
+import { setFriends, setOnlineUsers, setPendingFriendsInvitations } from "../redux/actions/friendsActions";
 
 let socket = null;
 
@@ -19,8 +19,19 @@ export const connectWithSocketServer = (userDetails) => {
     });
     socket.on("friends-invitations", (data) => {
         const { pendingInvitations } = data;
-        console.log("socket friend invitation event is working")
-        friends.dispatch(setPendingFriendsInvitations(pendingInvitations));
+        //console.log("socket friend invitation event is working")
+        store.dispatch(setPendingFriendsInvitations(pendingInvitations));
+    });
+    socket.on("friends-list", (data) => {
+        const { friends } = data;
+        console.log(friends)
+        store.dispatch(setFriends(friends))
+    });
+
+    socket.on("online-users", (data) => {
+        const { onlineUsers } = data;
+        console.log("is online event is working");
+        store.dispatch(setOnlineUsers(onlineUsers));
     });
 
 }

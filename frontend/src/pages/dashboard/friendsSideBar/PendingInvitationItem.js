@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Tooltip, Typography, Box, Avatar } from "@mui/material";
 import { InvitationButton } from './InvitationButton';
-export const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitation = () => { }, rejectFriendInvitation = () => { } }) => {
+import { connect } from "react-redux";
+import { getActions } from '../../../redux/actions/friendsActions';
+const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitation = () => { }, rejectFriendInvitation = () => { } }) => {
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
     const handleAcceptInvitation = () => {
@@ -48,3 +50,10 @@ export const PendingInvitationItem = ({ id, username, mail, acceptFriendInvitati
             </div>
         </Tooltip>)
 }
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch),
+    };
+};
+
+export default connect(null, mapActionsToProps)(PendingInvitationItem);

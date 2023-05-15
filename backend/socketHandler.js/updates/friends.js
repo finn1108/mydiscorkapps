@@ -31,14 +31,14 @@ const updateFriends = async (userId) => {
         if (receiverList.length > 0) {
             const user = await User.findById(userId, { _id: 1, friends: 1 }).populate(
                 "friends",
-                "_id username mail"
+                "_id username email"
             );
 
             if (user) {
                 const friendsList = user.friends.map((f) => {
                     return {
                         id: f._id,
-                        mail: f.mail,
+                        email: f.email,
                         username: f.username,
                     };
                 });
