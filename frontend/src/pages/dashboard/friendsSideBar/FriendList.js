@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from "@mui/system";
-import { FriendListItem } from './friendList/FriendListItem';
+import FriendListItem from './friendList/FriendListItem';
 import { connect } from "react-redux";
 
 

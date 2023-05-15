@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { styled } from "@mui/system";
 import SideBar from './dashboard/SideBar';
 import { FriendsSideBar } from './dashboard/FriendsSideBar';
-import { Messenger } from './dashboard/Messenger';
+
 import { AppBar } from './dashboard/AppBar';
 import { connect } from "react-redux";
 import { logout } from '../components/utils/auth';
 import { getActions } from '../redux/actions/authActions';
 import { connectWithSocketServer } from '../realTimeChat/socketConnection';
+import Messenger from './dashboard/messenger/Messenger';
 
 
 const Wrapper = styled("div")({
