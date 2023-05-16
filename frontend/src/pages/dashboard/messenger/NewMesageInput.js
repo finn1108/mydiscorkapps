@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from "@mui/system";
 import { connect } from "react-redux";
+import { sendDirectMessage } from '../../../realTimeChat/socketConnection';
 
 
 const MainContainer = styled("div")({
@@ -26,13 +27,27 @@ const NewMesageInput = ({ chosenChatDetails }) => {
     const handleMessageValueChange = (event) => {
         setMessage(event.target.value);
     };
+    const handleKeyPressed = (event) => {
+        if (event.key === "Enter") {
+            handleSendMessage();
+        }
+    };
+    const handleSendMessage = () => {
+        if (message.length > 0) {
+            sendDirectMessage({
+                receiverUserId: chosenChatDetails.id,
+                content: message,
+            });
+            setMessage("");
+        }
+    };
     return (
         <MainContainer>
             <Input
                 placeholder={`Write message to ${chosenChatDetails.name}`}
                 value={message}
                 onChange={handleMessageValueChange}
-
+                onKeyDown={handleKeyPressed}
             />
         </MainContainer>
     )

@@ -20,11 +20,7 @@ export const updateDirectChatHistoryIfActive = (data) => {
     }
 };
 
-const updateChatHistoryIfSameConversationActive = ({
-    participants,
-    usersInCoversation,
-    messages,
-}) => {
+const updateChatHistoryIfSameConversationActive = ({ participants, usersInCoversation, messages, }) => {
     const result = participants.every(function (participantId) {
         return usersInCoversation.includes(participantId);
     });

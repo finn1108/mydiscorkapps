@@ -31,10 +31,11 @@ export const connectWithSocketServer = (userDetails) => {
 
     socket.on("online-users", (data) => {
         const { onlineUsers } = data;
-        console.log("is online event is working");
+        //console.log("is online event is working");
         store.dispatch(setOnlineUsers(onlineUsers));
     });
     socket.on("direct-chat-history", (data) => {
+        console.log("direct chat event is working");
         console.log(data);
         updateDirectChatHistoryIfActive(data);
     });

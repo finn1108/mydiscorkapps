@@ -22,7 +22,8 @@ const login = async (req, res) => {
                 userLoginDetails: {
                     username: userInfo.username,
                     email: userInfo.email,
-                    token
+                    token,
+                    _id: userInfo._id
                 }
 
 
@@ -68,7 +69,8 @@ const register = async (req, res) => {
             userDetails: {
                 email: registeredUser.email,
                 username: registeredUser.username,
-                token: token
+                token: token,
+                _id: registeredUser._id
             }
         })
 

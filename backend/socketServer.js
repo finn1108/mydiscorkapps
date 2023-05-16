@@ -1,7 +1,9 @@
 const { verifyTokenSocket } = require("./middleware/authSocket");
 const { disconnectHandler } = require("./socketHandler.js/disconnectHandler");
 const newConnectionHandler = require("./socketHandler.js/newConnectionHandler");
-const serverStore = require("./serverStore")
+const serverStore = require("./serverStore");
+const directMessageHandler = require("./socketHandler.js/directMessageHandler");
+const directChatHistoryHandler = require("./socketHandler.js/directChatHistoryHandler");
 const registerSocketServer = (server) => {
     const io = require("socket.io")(server, {
         cors: {
@@ -29,6 +31,15 @@ const registerSocketServer = (server) => {
         newConnectionHandler(socket, io);
         //emit online user
         emitOnlineUsers();
+
+        socket.on("direct-message", (data) => {
+
+            directMessageHandler(socket, data);
+        });
+
+        socket.on("direct-chat-history", (data) => {
+            directChatHistoryHandler(socket, data);
+        });
 
         socket.on("disconnect", () => {
             disconnectHandler(socket);
